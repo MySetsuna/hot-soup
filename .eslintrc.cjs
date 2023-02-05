@@ -21,6 +21,7 @@ module.exports = {
 		indent: ['error', 'tab'],
 		'linebreak-style': ['error', 'unix'],
 		quotes: ['error', 'single'],
-		semi: ['error', 'always']
+		semi: ['error', 'always'],
+		'no-unused-vars': [2, { vars: 'all', args: 'after-used' }]
 	}
 };
