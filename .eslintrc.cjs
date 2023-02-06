@@ -16,12 +16,18 @@ module.exports = {
 		ecmaVersion: 'latest',
 		sourceType: 'module'
 	},
-	plugins: ['react', '@typescript-eslint'],
+	plugins: ['react'],
+	settings: {
+		react: {
+			version: 'detect'
+		}
+	},
 	rules: {
 		indent: ['error', 'tab'],
-		'linebreak-style': ['error', 'unix'],
+		// 'linebreak-style': ['error', 'unix'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
-		'no-unused-vars': [2, { vars: 'all', args: 'after-used' }]
+		'no-unused-vars': [2, { vars: 'all', args: 'after-used' }],
+		'no-tabs': 0
 	}
 };
