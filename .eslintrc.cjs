@@ -16,7 +16,7 @@ module.exports = {
 		ecmaVersion: 'latest',
 		sourceType: 'module'
 	},
-	plugins: ['react'],
+	plugins: ['react', '@typescript-eslint'],
 	settings: {
 		react: {
 			version: 'detect'
@@ -27,6 +27,8 @@ module.exports = {
 		// 'linebreak-style': ['error', 'unix'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
+		'prefer-template': 'error',
+		'@typescript-eslint/no-unused-vars': [0],
 		'no-unused-vars': [2, { vars: 'all', args: 'after-used' }],
 		'no-tabs': 0
 	}
