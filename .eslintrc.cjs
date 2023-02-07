@@ -22,6 +22,7 @@ module.exports = {
 			version: 'detect'
 		}
 	},
+	ignorePatterns: ['**/*.css', '**/*.scss'],
 	rules: {
 		indent: ['error', 'tab'],
 		// 'linebreak-style': ['error', 'unix'],

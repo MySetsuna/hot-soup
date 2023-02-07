@@ -50,6 +50,6 @@
   },
   "lint-staged": {
     "src/**/*.{js,json,vue,jsx,ts,tsx}": "eslint --fix --cache",
-    "src/**/*.{css}": "eslint --fix --cache"
+    "src/**/*.{css,scss}": "eslint --fix --cache"
   }
 }

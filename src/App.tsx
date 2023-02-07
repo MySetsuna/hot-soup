@@ -24,7 +24,7 @@ function App () {
 	return (
 		<div className="app">
 			<ThemeProvider theme={theme}>
-				<Typography variant="h1" gutterBottom>
+				<Typography variant="h1" gutterBottom className="title">
 					Hot Soup
 				</Typography>
 				<Paper
