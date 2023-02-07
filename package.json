@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "prepare": "husky install",
-    "eslint": "lint-staged"
+    "eslint": "lint-staged",
+    "deploy:github-pages": "deploy.sh &"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -39,7 +40,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "deploy:github-pages"
     }
   },
   "lint-staged": {
