@@ -24,7 +24,7 @@ function App () {
 	return (
 		<div className="app">
 			<ThemeProvider theme={theme}>
-				<Typography variant="h1" gutterBottom className="title">
+				<Typography variant="h1" gutterBottom className="title" sx={{ p: 4 }}>
 					Hot Soup
 				</Typography>
 				<Paper
@@ -34,7 +34,8 @@ function App () {
 						gap: 10,
 						margin: 10,
 						padding: 10,
-						paddingTop: 5
+						paddingTop: 5,
+						marginTop: 0
 					}}
 				>
 					<SignIn />
