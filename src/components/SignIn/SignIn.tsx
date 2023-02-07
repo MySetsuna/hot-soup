@@ -22,8 +22,8 @@ function Copyright (props: any) {
 			{...props}
 		>
 			{'Copyright © '}
-			<Link color="inherit" href="https://mui.com/">
-				Your Website
+			<Link color="inherit" href="https://MySetsuna.github.io/hot-soup">
+				💓https://MySetsuna.github.io/hot-soup
 			</Link>{' '}
 			{new Date().getFullYear()}
 			{'.'}
