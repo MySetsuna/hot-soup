@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
+import SignIn from './components/SignIn/SignIn';
 
 function App () {
-	const [count, setCount] = useState(0);
+	useEffect(() => {
+		let logStore = false;
+		if (!logStore) {
+			console.log(logStore);
+		}
+
+		return () => {
+			logStore = true;
+		};
+	}, []);
 
 	return (
 		<div className="App">
-			<h1>HOT SOUP</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count + 1}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p>build a blog site with friend</p>
+			<SignIn />
 		</div>
 	);
 }
