@@ -11,6 +11,8 @@ export default defineConfig({
 	},
 	test: {
 		globals: true,
-		environment: 'jsdom'
+		environment: 'jsdom',
+		reporters: 'vitest-sonar-reporter',
+		outputFile: 'sonar-report.xml'
 	}
 });
