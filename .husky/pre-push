@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 # 先进行测试
-yarn run vitest --run 
+yarn run vitest --run --silent=false --coverage
 
 # 构建
 yarn run build
