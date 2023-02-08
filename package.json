@@ -11,7 +11,8 @@
     "eslint": "lint-staged",
     "test": " vitest --silent=false --coverage",
     "pre-test": "vitest --run --silent=false --coverage",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "deploy": "deploy.sh"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -46,7 +47,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "test"
+      "pre-push": "deploy"
     }
   },
   "lint-staged": {
