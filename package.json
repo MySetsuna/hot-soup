@@ -9,9 +9,8 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "eslint": "lint-staged",
-    "test": " vitest --silent=false --coverage",
-    "pre-test": "vitest --run --silent=false --coverage",
-    "coverage": "vitest run --coverage",
+    "test:watch": " vitest --silent=false --coverage",
+    "test": "vitest run --silent=false --coverage",
     "deploy": "deploy.sh"
   },
   "dependencies": {

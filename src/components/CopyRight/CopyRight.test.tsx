@@ -9,7 +9,7 @@ describe('Test For CopyRight', () => {
 		expect(getByText('💓https://MySetsuna.github.io/hot-soup')).toBeDefined();
 		expect(asFragment()).toMatchInlineSnapshot(`
         <DocumentFragment>
-          <p
+         * <p
             class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter css-1vl95ex-MuiTypography-root"
           >
             Copyright ©
