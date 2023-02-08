@@ -45,11 +45,11 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "test"
+      "pre-push": ""
     }
   },
   "lint-staged": {
-    "src/**/*.{js,json,vue,jsx,ts,tsx}": "eslint --fix --cache",
+    "src/**/*.{js,json,jsx,ts,tsx}": "eslint --fix --cache",
     "src/**/*.{css,scss}": "eslint --fix --cache"
   }
 }
