@@ -12,12 +12,11 @@ function Copyright (props: DefaultComponentProps<OverridableTypeMap>) {
 			align="center"
 			{...props}
 		>
-			{'Copyright © '}
+			Copyright ©
 			<Link color="inherit" href="https://MySetsuna.github.io/hot-soup">
 				💓https://MySetsuna.github.io/hot-soup
-			</Link>{' '}
+			</Link>
 			{new Date().getFullYear()}
-			{'.'}
 		</Typography>
 	);
 }
