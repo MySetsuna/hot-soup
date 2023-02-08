@@ -10,6 +10,7 @@
     "prepare": "husky install",
     "eslint": "lint-staged",
     "test": " vitest --silent=false --coverage",
+    "pre-test": "vitest --run --silent=false --coverage",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
