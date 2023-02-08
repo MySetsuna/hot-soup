@@ -4,7 +4,7 @@
 set -e
 
 # 先进行测试
-yarn run pre-test
+yarn run test
 
 # 构建
 yarn run build
