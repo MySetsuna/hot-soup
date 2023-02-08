@@ -100,9 +100,8 @@ function App() {
 	return (
 		<div className="app">
 			<ThemeProvider theme={theme}>
-				{userStore.name}
 				<Typography variant="h1" gutterBottom className="title" sx={{ p: 4 }}>
-					Hot Soup
+					Hot Soup {userStore.isLoggedIn && `-${userStore.name}`}
 				</Typography>
 				<Paper
 					elevation={12}
