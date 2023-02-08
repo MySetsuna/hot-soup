@@ -3,8 +3,11 @@
 # 发生错误时终止
 set -e
 
+# 先进行测试
+yarn run pre-test
+
 # 构建
-npm run build
+yarn run build
 
 # 进入构建文件夹
 cd dist
