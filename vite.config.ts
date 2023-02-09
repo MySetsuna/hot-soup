@@ -12,7 +12,10 @@ export default defineConfig({
 	test: {
 		globals: true,
 		environment: 'jsdom',
-		reporters: 'vitest-sonar-reporter',
-		outputFile: 'sonar-report.xml'
+		coverage: {
+			// or 'istanbul'
+			provider: 'c8',
+			reporter: ['text', 'lcov']
+		}
 	}
 });

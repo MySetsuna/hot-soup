@@ -9,10 +9,11 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "eslint": "eslint src",
-    "test:watch": " vitest --silent=false --coverage",
-    "test": "vitest run --silent=false --coverage",
+    "test": " vitest --coverage",
+    "coverage": "vitest run --coverage",
+    "vitest:run": "vitest run",
     "deploy": "deploy.sh",
-    "sonar-scanner": "sonar-scanner"
+    "sonar-scanner": "yarn run coverage && node_modules/sonar-scanner/bin/sonar-scanner"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -21,8 +22,7 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "vitest-sonar-reporter": "^0.3.4"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
@@ -43,7 +43,8 @@
     "prettier": "^2.5.1",
     "typescript": "*",
     "vite": "^4.1.0",
-    "vitest": "^0.28.4"
+    "vitest": "^0.28.4",
+    "sonar-scanner": "^3.1.0"
   },
   "husky": {
     "hooks": {
