@@ -32,7 +32,7 @@ const initState = {
 	isLoggedIn: false
 };
 
-function loginReducer(
+function loginReducer (
 	state: UserLogState,
 	action: UserLogAction
 ): UserLogState {
@@ -76,7 +76,7 @@ function loginReducer(
 	}
 }
 
-function App() {
+function App () {
 	const theme = createTheme();
 	const [userStore, dispatch] = useReducer(loginReducer, initState);
 
