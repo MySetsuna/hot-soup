@@ -5,7 +5,7 @@
 set -e
 
 # 先进行测试
-yarn run vitest:run
+yarn run coverage
 
 # 构建
 yarn run build
