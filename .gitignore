@@ -24,6 +24,5 @@ coverage
 *.sln
 *.sw?
 .eslintcache
-sonar-project.properties
 sonar-report.xml
 .scannerwork
