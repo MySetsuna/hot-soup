@@ -4,6 +4,9 @@
 # 发生错误时终止
 set -e
 
+#移除dist
+yarn run rimraf dist
+
 # 先进行测试
 yarn run coverage
 
