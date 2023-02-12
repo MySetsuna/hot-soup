@@ -2,106 +2,22 @@ import { pink } from '@mui/material/colors';
 import Paper from '@mui/material/Paper/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography/Typography';
-import React, { useReducer } from 'react';
-import { loginApi } from './api/User';
 import './App.css';
 import Copyright from './components/CopyRight';
-import SignIn from './components/SignIn/SignIn';
+import useMyroutes from './hooks/useMyRoutes';
+import useUserInfo from './hooks/useUserInfo';
 
-// 第二个参数：state的reducer处理函数
-type ErrorMsg = string | unknown;
-type UserLogState = {
-	isLoggedIn: boolean;
-	isLoading: boolean;
-	isLoginByCookie?: boolean;
-	error?: ErrorMsg;
-	name?: string;
-	pwd?: string;
-};
-type UserLogAction = {
-	type: 'logout' | 'login' | 'logCookie' | 'success' | 'error';
-	payload?: { error: ErrorMsg };
-	userdata?: object;
-};
-
-const initState = {
-	name: '',
-	pwd: '',
-	isLoading: false,
-	error: '',
-	isLoggedIn: false
-};
-
-function loginReducer (
-	state: UserLogState,
-	action: UserLogAction
-): UserLogState {
-	switch (action.type) {
-	case 'logout':
-		return {
-			...state,
-			isLoggedIn: false,
-			error: ''
-		};
-	case 'logCookie':
-		return {
-			...state,
-			isLoginByCookie: true,
-			isLoading: true,
-			error: ''
-		};
-	case 'login':
-		return {
-			...state,
-			isLoading: true,
-			error: ''
-		};
-	case 'success':
-		return {
-			...state,
-			isLoggedIn: true,
-			isLoading: false,
-			...action.userdata
-		};
-	case 'error':
-		return {
-			...state,
-			error: action.payload?.error,
-			name: '',
-			pwd: '',
-			isLoading: false
-		};
-	default:
-		return state;
-	}
-}
-
-function App () {
+function App() {
 	const theme = createTheme();
-	const [userStore, dispatch] = useReducer(loginReducer, initState);
+	const { app } = useMyroutes();
+	const { userInfo } = useUserInfo();
 
-	const login = (event: React.MouseEvent) => {
-		event.preventDefault();
-		dispatch({ type: 'login' });
-		const [name, pwd] = ['jxk', 'jxk123'];
-		loginApi({ name, pwd })
-			.then((data) => {
-				console.log(data, 'data');
-				dispatch({ type: 'success', userdata: { name, pwd } });
-			})
-			.catch((error) => {
-				dispatch({
-					type: 'error',
-					payload: { error: error.message }
-				});
-			});
-	};
-
+	console.log(userInfo, 'userInfo');
 	return (
 		<div className="app">
 			<ThemeProvider theme={theme}>
 				<Typography variant="h1" gutterBottom className="title" sx={{ p: 4 }}>
-					Hot Soup {userStore.isLoggedIn && `-${userStore.name}`}
+					Hot Soup {userInfo.isLoggedIn && `-${userInfo.name}`}
 				</Typography>
 				<Paper
 					elevation={12}
@@ -114,7 +30,7 @@ function App () {
 						marginTop: 0
 					}}
 				>
-					<SignIn login={login} />
+					{app}
 				</Paper>
 				<Copyright sx={{ mt: 8, mb: 4 }} />
 			</ThemeProvider>

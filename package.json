@@ -20,14 +20,18 @@
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.7",
+    "loadsh": "^0.0.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router": "^6.8.1",
+    "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
     "@testing-library/react": "^13.4.0",
-    "@types/react": "^18.0.27",
+    "@types/lodash": "^4.14.191",
+    "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
@@ -40,10 +44,10 @@
     "jsdom": "^21.1.0",
     "lint-staged": "^13.1.0",
     "prettier": "^2.5.1",
+    "sonar-scanner": "^3.1.0",
     "typescript": "*",
     "vite": "^4.1.0",
-    "vitest": "^0.28.4",
-    "sonar-scanner": "^3.1.0"
+    "vitest": "^0.28.4"
   },
   "husky": {
     "hooks": {

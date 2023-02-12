@@ -11,16 +11,29 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import useUserInfo from '../../hooks/useUserInfo';
+import { useNavigate } from 'react-router';
 
-export default function SignIn (props: {
-	login: React.MouseEventHandler<HTMLButtonElement>;
-}) {
+export default function SignIn() {
+	const { signIn } = useUserInfo();
+	const navigate = useNavigate();
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get('email'),
+		console.log(data, {
+			name: data.get('name'),
 			password: data.get('password')
+		});
+		const name = data.get('name')?.toString();
+		const password = data.get('password')?.toString();
+		if (!name || !password) {
+			return;
+		}
+		signIn({ name, pwd: password }).then((data) => {
+			console.log(data, 'datadatadata');
+			if (data.isLoggedIn) {
+				navigate('/hot-soup/');
+			}
 		});
 	};
 
@@ -46,9 +59,9 @@ export default function SignIn (props: {
 						required
 						fullWidth
 						id="email"
-						label="Email Address"
-						name="email"
-						autoComplete="email"
+						label="User Name"
+						name="name"
+						autoComplete="name"
 						autoFocus
 					/>
 					<TextField
@@ -70,7 +83,7 @@ export default function SignIn (props: {
 						fullWidth
 						variant="contained"
 						sx={{ mt: 3, mb: 2 }}
-						onClick={props.login}
+						// onClick={() => signIn({ name: 'Jack', pwd: 'asdasfdf' })}
 					>
 						Sign In
 					</Button>

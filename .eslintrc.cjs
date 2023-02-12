@@ -14,7 +14,8 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
-		sourceType: 'module'
+		sourceType: 'module',
+		parser: '@typescript-eslint/parser'
 	},
 	plugins: ['react', '@typescript-eslint'],
 	settings: {
@@ -25,12 +26,13 @@ module.exports = {
 	ignorePatterns: ['**/*.css', '**/*.scss'],
 	rules: {
 		indent: ['error', 'tab'],
+		'react/react-in-jsx-scope': 0,
 		// 'linebreak-style': ['error', 'unix'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
 		'prefer-template': 'error',
-		'@typescript-eslint/no-unused-vars': [0],
-		'no-unused-vars': [2, { vars: 'all', args: 'after-used' }],
+		'@typescript-eslint/no-unused-vars': [2],
+		'no-unused-vars': [0],
 		'no-tabs': 0
 	}
 };
