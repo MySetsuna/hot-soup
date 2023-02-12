@@ -7,7 +7,7 @@ set -e
 yarn run test
 
 # 构建
-yarn run build
+yarn run build:gh
 
 # 进入构建文件夹
 cd dist
