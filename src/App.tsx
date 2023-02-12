@@ -12,11 +12,11 @@ function App() {
 	const { app } = useMyroutes();
 	const { userInfo } = useUserInfo();
 
-	console.log(userInfo, 'userInfo');
+	console.log(app, 'app');
 	return (
 		<div className="app">
-			{userInfo.isLoggedIn && `-${userInfo.name}`}
 			<ThemeProvider theme={theme}>
+				{userInfo.isLoggedIn && `${userInfo.name}`}
 				<Typography variant="h1" gutterBottom className="title" sx={{ p: 4 }}>
 					Hot Soup
 				</Typography>

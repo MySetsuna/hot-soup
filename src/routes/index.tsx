@@ -6,10 +6,10 @@ import Welcome from '../components/Welcome';
 import MemberCard from '../example/MemberCard';
 import Point from '../example/Point';
 import useUserInfo from '../hooks/useUserInfo';
-
+const BASE_URL = import.meta.env.BASE_URL;
 const appRoutes = [
 	{
-		path: '/',
+		path: '/*',
 		element: <Welcome />
 	},
 	{
@@ -20,7 +20,7 @@ const appRoutes = [
 			const { userInfo } = useUserInfo();
 			console.log(a, userInfo, '333333333333333333333');
 			if (userInfo.isLoggedIn) {
-				redirect('/hot-soup/');
+				redirect(BASE_URL);
 			}
 		}
 	},

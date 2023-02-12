@@ -32,7 +32,7 @@ export default function SignIn() {
 		signIn({ name, pwd: password }).then((data) => {
 			console.log(data, 'datadatadata');
 			if (data.isLoggedIn) {
-				navigate('/hot-soup/');
+				navigate(import.meta.env.BASE_URL);
 			}
 		});
 	};
