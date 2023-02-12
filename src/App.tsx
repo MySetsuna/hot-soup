@@ -15,9 +15,10 @@ function App() {
 	console.log(userInfo, 'userInfo');
 	return (
 		<div className="app">
+			{userInfo.isLoggedIn && `-${userInfo.name}`}
 			<ThemeProvider theme={theme}>
 				<Typography variant="h1" gutterBottom className="title" sx={{ p: 4 }}>
-					Hot Soup {userInfo.isLoggedIn && `-${userInfo.name}`}
+					Hot Soup
 				</Typography>
 				<Paper
 					elevation={12}
