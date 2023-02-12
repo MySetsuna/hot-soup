@@ -4,12 +4,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography/Typography';
 import './App.css';
 import Copyright from './components/CopyRight';
-import useMyroutes from './hooks/useMyRoutes';
+import useAppRoutes from './hooks/useAppRoutes';
 import useUserInfo from './hooks/useUserInfo';
 
 function App() {
 	const theme = createTheme();
-	const { app } = useMyroutes();
+	const { app } = useAppRoutes();
 	const { userInfo } = useUserInfo();
 
 	console.log(app, 'app');

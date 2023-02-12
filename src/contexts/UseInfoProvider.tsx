@@ -5,7 +5,7 @@ interface useUserInfoProps {
 	children: JSX.Element;
 }
 const INIT_STATE = {
-	name: '',
+	name: `My Friend${Math.floor(Math.random() * 1000)}`,
 	pwd: '',
 	isLoading: false,
 	error: '',

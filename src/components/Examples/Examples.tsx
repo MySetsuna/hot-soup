@@ -8,6 +8,4 @@ const Examples = () => {
 	);
 };
 
-Examples.propTypes = {};
-
 export default Examples;
