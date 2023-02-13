@@ -1,8 +1,23 @@
-import { createContext, useReducer } from 'react';
+import React, { createContext, useReducer } from 'react';
 import { signInApi, signOutApi } from '../api/User';
 
-interface useUserInfoProps {
+interface UseUserInfoProps {
 	children: JSX.Element;
+}
+
+type ErrorMsg = string | unknown;
+export interface UserLogState {
+	isLoggedIn: boolean;
+	isLoading: boolean;
+	isLoginByCookie?: boolean;
+	error?: ErrorMsg;
+	name: string;
+	pwd?: string;
+}
+interface UserLogAction {
+	type: 'signOut' | 'signIn' | 'logCookie' | 'success' | 'error';
+	payload?: { error: ErrorMsg };
+	userdata?: object;
 }
 const INIT_STATE = {
 	name: `My Friend${Math.floor(Math.random() * 1000)}`,
@@ -11,58 +26,14 @@ const INIT_STATE = {
 	error: '',
 	isLoggedIn: false
 };
-const UserInfoProvider = (props: useUserInfoProps) => {
-	const [userInfo, dispatch] = useReducer(signInReducer, INIT_STATE);
-	const signOut = () => {
-		signOutApi()
-			.then((data) => {
-				console.log(data, 'data');
-				dispatch({ type: 'signOut' });
-			})
-			.catch((error) => {
-				dispatch({
-					type: 'error',
-					payload: { error: error.message }
-				});
-			});
-	};
-	const signIn = ({ name, pwd }: { name: string; pwd: string }) => {
-		return new Promise<UserLogState>((resolved, reject) => {
-			dispatch({ type: 'signIn' });
-			signInApi({ name, pwd })
-				.then((data) => {
-					console.log(data, 'data');
-					dispatch({ type: 'success', userdata: { name, pwd } });
-					resolved(data);
-				})
-				.catch((error) => {
-					dispatch({
-						type: 'error',
-						payload: { error: error.message }
-					});
-					reject(error);
-				});
-		});
-	};
-	return (
-		<UserInfoContext.Provider value={{ userInfo, signIn, signOut }}>
-			{props.children}
-		</UserInfoContext.Provider>
-	);
-};
-export default UserInfoProvider;
-export { UserInfoContext };
 
 interface UserInfoContextValues {
 	userInfo: UserLogState;
 	signIn(_arg0: { name: string; pwd: string }): Promise<UserLogState>;
 	signOut(): void;
 }
-const UserInfoContext = createContext<UserInfoContextValues | undefined>(
-	undefined
-);
 
-function signInReducer(
+function signInReducer (
 	state: UserLogState,
 	action: UserLogAction
 ): UserLogState {
@@ -105,17 +76,53 @@ function signInReducer(
 		return state;
 	}
 }
-type ErrorMsg = string | unknown;
-export interface UserLogState {
-	isLoggedIn: boolean;
-	isLoading: boolean;
-	isLoginByCookie?: boolean;
-	error?: ErrorMsg;
-	name: string;
-	pwd?: string;
-}
-interface UserLogAction {
-	type: 'signOut' | 'signIn' | 'logCookie' | 'success' | 'error';
-	payload?: { error: ErrorMsg };
-	userdata?: object;
-}
+
+const UserInfoContext = createContext<UserInfoContextValues | undefined>(
+	undefined
+);
+
+const UserInfoProvider = (props: UseUserInfoProps) => {
+	const [userInfo, dispatch] = useReducer(signInReducer, INIT_STATE);
+	const signOut = () => {
+		signOutApi()
+			.then((data) => {
+				console.log(data, 'data');
+				dispatch({ type: 'signOut' });
+			})
+			.catch((error) => {
+				dispatch({
+					type: 'error',
+					payload: { error: error.message }
+				});
+			});
+	};
+	const signIn = ({ name, pwd }: { name: string; pwd: string }) => {
+		return new Promise<UserLogState>((resolve, reject) => {
+			dispatch({ type: 'signIn' });
+			signInApi({ name, pwd })
+				.then((data) => {
+					console.log(data, 'data');
+					dispatch({ type: 'success', userdata: { name, pwd } });
+					resolve(data);
+				})
+				.catch((error) => {
+					dispatch({
+						type: 'error',
+						payload: { error: error.message }
+					});
+					reject(error);
+				});
+		});
+	};
+	const userContextValue = React.useMemo(
+		() => ({ userInfo, signIn, signOut }),
+		[userInfo]
+	);
+	return (
+		<UserInfoContext.Provider value={userContextValue}>
+			{props.children}
+		</UserInfoContext.Provider>
+	);
+};
+export default UserInfoProvider;
+export { UserInfoContext };
