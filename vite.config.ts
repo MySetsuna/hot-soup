@@ -18,6 +18,7 @@ const vitestConfig: VitestUserConfigInterface = {
 export default defineConfig(({ mode }) => {
 	// https://cn.vitejs.dev/config/#using-environment-variables-in-config
 	const env = loadEnv(mode, process.cwd(), '');
+	console.log(env.BASE_URL, 'env.BASE_URL');
 	return {
 		plugins: [react()],
 		base: env.BASE_URL,
