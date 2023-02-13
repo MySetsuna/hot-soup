@@ -9,6 +9,7 @@
 		"build:gh": "tsc && vite build --mode gh",
 		"build": "tsc && vite build ",
 		"preview": "vite preview",
+		"preview:gh": "vite preview --mode gh",
 		"prepare": "husky install",
 		"eslint": "eslint src",
 		"test": " vitest --coverage",
