@@ -1,40 +1,65 @@
+import React from 'react';
 /* eslint-disable react-hooks/rules-of-hooks */
-import { redirect } from 'react-router';
+import App, { loader as rootLoader, action as rootAction } from '@/App';
+import ErrorPage from '@/ErrorPage';
 import Examples from '../components/Examples';
 import SignIn from '../components/SignIn';
 import Welcome from '../components/Welcome';
 import MemberCard from '../example/MemberCard';
 import Point from '../example/Point';
-import useUserInfo from '../hooks/useUserInfo';
-const BASE_URL = import.meta.env.BASE_URL;
+import Contact, {
+	loader as contactLoader,
+	action as contactAction
+} from '@/routes/contact';
+import EditContact, { action as editAction } from '@/routes/edit';
+import { action as destroyAction } from '@/routes/destroy';
+
 const appRoutes = [
 	{
-		path: '/*',
-		element: <Welcome />
-	},
-	{
-		path: 'signin',
-		element: <SignIn />,
-		loader: (a: unknown) => {
-			console.log(a, '22222222222222222');
-			const { userInfo } = useUserInfo();
-			console.log(a, userInfo, '333333333333333333333');
-			if (userInfo.isLoggedIn) {
-				redirect(BASE_URL);
-			}
-		}
-	},
-	{
-		path: 'examples',
-		element: <Examples />,
+		path: '/',
+		element: <App />,
+		errorElement: <ErrorPage />,
+		loader: rootLoader,
+		action: rootAction,
 		children: [
 			{
-				path: 'Point',
-				element: <Point />
+				index: true,
+				element: <Welcome />
 			},
 			{
-				path: 'MemberCard',
-				element: <MemberCard />
+				path: 'contacts/:contactId',
+				element: <Contact />,
+				loader: contactLoader,
+				action: contactAction
+			},
+			{
+				path: 'contacts/:contactId/edit',
+				element: <EditContact />,
+				loader: contactLoader,
+				action: editAction
+			},
+			{
+				path: 'contacts/:contactId/destroy',
+				loader: contactLoader,
+				action: destroyAction
+			},
+			{
+				path: 'signin',
+				element: <SignIn />
+			},
+			{
+				path: 'examples',
+				element: <Examples />,
+				children: [
+					{
+						path: 'Point',
+						element: <Point />
+					},
+					{
+						path: 'MemberCard',
+						element: <MemberCard />
+					}
+				]
 			}
 		]
 	}

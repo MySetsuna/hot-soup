@@ -1,10 +1,21 @@
 import React from 'react';
+import { Outlet } from 'react-router';
+import { Link } from 'react-router-dom';
 const Examples = () => {
 	return (
-		<div>
-			<>侧边栏</>
-			<>列表</>
-		</div>
+		<>
+			<nav>
+				<ul>
+					<li>
+						<Link to={'Point'}>Point</Link>
+					</li>
+					<li>
+						<Link to={'MemberCard'}>MemberCard</Link>
+					</li>
+				</ul>
+			</nav>
+			<Outlet />
+		</>
 	);
 };
 

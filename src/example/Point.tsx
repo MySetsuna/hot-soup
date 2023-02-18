@@ -39,11 +39,13 @@ const Points = () => {
 	const filtedPoints = points.filter(
 		(p) => getDistance(p.x, p.y) < maxDistance
 	);
-	const pointToDisplay = sortPoints(filtedPoints, sortBy).map((p: Point) => (
-		<li key={`${p.x}|${p.y}`}>
-			({p.x}, {p.y})
-		</li>
-	));
+	const pointToDisplay = sortPoints(filtedPoints, sortBy).map(
+		(p: Point, index) => (
+			<li key={`${p.x}|${p.y}${index}`}>
+				({p.x}, {p.y})
+			</li>
+		)
+	);
 
 	return (
 		<>

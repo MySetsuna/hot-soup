@@ -15,7 +15,7 @@ import useUserInfo from '../../hooks/useUserInfo';
 import { useNavigate } from 'react-router';
 
 export default function SignIn() {
-	const { signIn } = useUserInfo();
+	const { signIn, userInfo } = useUserInfo();
 	const navigate = useNavigate();
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -31,11 +31,12 @@ export default function SignIn() {
 		}
 		signIn({ name, pwd: password }).then((data) => {
 			console.log(data, 'datadatadata');
-			if (data.isLoggedIn) {
-				navigate(import.meta.env.BASE_URL);
-			}
 		});
 	};
+
+	React.useEffect(() => {
+		if (userInfo.isLoggedIn) navigate('/');
+	}, [userInfo, navigate]);
 
 	return (
 		<Container component="main" maxWidth="xs">

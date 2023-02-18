@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
 		base: env.BASE_URL,
 		resolve: {
 			alias: {
-				$: resolve(__dirname, 'src')
+				'@': resolve(__dirname, 'src')
 			}
 		},
 		test: vitestConfig.test
