@@ -1,4 +1,4 @@
-import type { UserLogState } from '../contexts/UseInfoProvider';
+import type { UserLogState } from '@/provider/UseInfoProvider';
 
 export const signInApi = ({ name, pwd }: { name: string; pwd: string }) => {
 	return new Promise<UserLogState>((resolve) => {
