@@ -1,22 +1,34 @@
-import type { UserLogState } from '@/provider/UseInfoProvider';
+import { SignResult } from '@/app/slice/signSlice';
 
-export const signInApi = ({ name, pwd }: { name: string; pwd: string }) => {
-	return new Promise<UserLogState>((resolve) => {
+export const signInApi = ({
+	user,
+	pwd,
+	token
+}: {
+	user: string;
+	pwd?: string;
+	token?: string;
+}) => {
+	return new Promise<SignResult>((resolve) => {
 		setTimeout(() => {
 			resolve({
-				isLoggedIn: true,
-				isLoading: false,
-				name
+				result: 'success',
+				message: '',
+				token: 'fasdfasdfasd-43214234-@#$^@#@%',
+				userName: user
 			});
-			console.log(pwd);
-		}, 300);
+			console.log(pwd, user, token);
+		}, 1000);
 	});
 };
 
 export const signOutApi = () => {
-	return new Promise((resolve) => {
+	return new Promise<SignResult>((resolve) => {
 		setTimeout(() => {
-			resolve('登出成功');
+			resolve({
+				result: 'success',
+				message: '登出成功'
+			});
 		}, 300);
 	});
 };

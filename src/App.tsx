@@ -13,10 +13,11 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import Copyright from './components/CopyRight';
-import useUserInfo from './hooks/useUserInfo';
 import { getContacts, createContact } from '@/contacts';
 import React from 'react';
 import { Avatar } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { RootState } from './app/store';
 async function loader({ request }) {
 	const url = new URL(request.url);
 	const q = url.searchParams.get('q');
@@ -31,7 +32,8 @@ async function action() {
 }
 function App() {
 	const theme = createTheme();
-	const { userInfo } = useUserInfo();
+	const userInfo = useSelector((state: RootState) => state.sign);
+	console.log(userInfo, 'userInfouserInfouserInfouserInfo');
 	const navigation = useNavigation();
 	const { contacts, q } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
 	const submit = useSubmit();

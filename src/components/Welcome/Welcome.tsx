@@ -1,8 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import useUserInfo from '@/hooks/useUserInfo';
 import { redirect, Outlet } from 'react-router-dom';
 import { getContacts, createContact } from '@/contacts';
+import { RootState } from '@/app/store';
+import { useSelector } from 'react-redux';
 async function loader() {
 	const contacts = await getContacts();
 	return { contacts };
@@ -13,7 +14,7 @@ async function action() {
 	return redirect(`/contacts/${contact.id}/edit`);
 }
 const Welcome = () => {
-	const { userInfo } = useUserInfo();
+	const userInfo = useSelector((state: RootState) => state.sign);
 	return (
 		<>
 			<h1>It's Hot - Soup</h1>

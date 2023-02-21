@@ -11,27 +11,27 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import useUserInfo from '../../hooks/useUserInfo';
 import { useNavigate } from 'react-router';
-
+import { signInAsync } from '@/app/slice/signSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
 export default function SignIn() {
-	const { signIn, userInfo } = useUserInfo();
+	const userInfo = useSelector((state: RootState) => state.sign);
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
 		console.log(data, {
-			name: data.get('name'),
+			user: data.get('user'),
 			password: data.get('password')
 		});
-		const name = data.get('name')?.toString();
+		const user = data.get('user')?.toString();
 		const password = data.get('password')?.toString();
-		if (!name || !password) {
+		if (!user || !password) {
 			return;
 		}
-		signIn({ name, pwd: password }).then((data) => {
-			console.log(data, 'datadatadata');
-		});
+		dispatch(signInAsync({ user, pwd: password }) as any);
 	};
 
 	React.useEffect(() => {
@@ -61,8 +61,8 @@ export default function SignIn() {
 						fullWidth
 						id="email"
 						label="User Name"
-						name="name"
-						autoComplete="name"
+						name="user"
+						autoComplete="user"
 						autoFocus
 					/>
 					<TextField
@@ -84,7 +84,7 @@ export default function SignIn() {
 						fullWidth
 						variant="contained"
 						sx={{ mt: 3, mb: 2 }}
-						// onClick={() => signIn({ name: 'Jack', pwd: 'asdasfdf' })}
+						// onClick={() => signIn({ user: 'Jack', pwd: 'asdasfdf' })}
 					>
 						Sign In
 					</Button>

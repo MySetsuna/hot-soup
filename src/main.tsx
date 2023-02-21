@@ -4,13 +4,14 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import UserInfoProvider from '@/provider/UseInfoProvider';
 import AppRouterProvider from '@/provider/AppRouterProvider';
+import { store } from './app/store';
+import { Provider } from 'react-redux';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
-		<UserInfoProvider>
+		<Provider store={store}>
 			<AppRouterProvider />
-		</UserInfoProvider>
+		</Provider>
 	</React.StrictMode>
 );
